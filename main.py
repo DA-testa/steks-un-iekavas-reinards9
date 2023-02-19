@@ -1,31 +1,34 @@
-# python3
+class Elements:
+    def __init__(self, vertiba):
+        self.vertiba = vertiba
+        self.nakamais = None
+class LinkedList:
+    def __init__(self):
+        self.sakums = None
+if __name__ == '__main__':
+    linked_list = LinkedList()
+    code = input()  
+    sakuma_iekavas = ["(", "[", "{"]
+    beigu_iekavas = [")", "]", "}"]
+    stack = []
+    for i, char in enumerate(code, start=1):
+        if char in sakuma_iekavas:
+            stack.append((char, i))
+        elif char in beigu_iekavas:
+            if not stack:
+                print(i)
+                break
+            top = stack.pop()
+            if (top[0] == "(" and char != ")") or \
+                    (top[0] == "[" and char != "]") or \
+                    (top[0] == "{" and char != "}"):
+                print(i)
+                break
+    else:
 
-from collections import namedtuple
-
-Bracket = namedtuple("Bracket", ["char", "position"])
-
-
-def are_matching(left, right):
-    return (left + right) in ["()", "[]", "{}"]
-
-
-def find_mismatch(text):
-    opening_brackets_stack = []
-    for i, next in enumerate(text):
-        if next in "([{":
-            # Process opening bracket, write your code here
-            pass
-
-        if next in ")]}":
-            # Process closing bracket, write your code here
-            pass
-
-
-def main():
-    text = input()
-    mismatch = find_mismatch(text)
-    # Printing answer, write your code here
-
-
-if __name__ == "__main__":
-    main()
+      
+        if stack:
+            print(stack[0][1])
+          
+        else:
+            print("Success")
